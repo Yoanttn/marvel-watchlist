@@ -86,3 +86,44 @@ CREATE TABLE One_shot_Univers (
     FOREIGN KEY (one_shot_id) REFERENCES One_shot(one_shot_id),
     FOREIGN KEY (univers_id) REFERENCES Univers(univers_id)
 );
+
+-- WATCHED-LIST
+
+CREATE TABLE User (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Watched_film (
+    user_id INTEGER NOT NULL,
+    film_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, film_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (film_id) REFERENCES Film(film_id)
+);
+
+CREATE TABLE Watched_episode (
+    user_id INTEGER NOT NULL,
+    serie_id INTEGER NOT NULL,
+    season_number INTEGER NOT NULL,
+    episode_number INTEGER NOT NULL,
+    PRIMARY KEY (user_id, serie_id, season_number, episode_number),
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (serie_id, season_number, episode_number) REFERENCES Episode(serie_id, season_number, episode_number)
+);
+
+CREATE TABLE Watched_special_presentation (
+    user_id INTEGER NOT NULL,
+    special_presentation_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, special_presentation_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (special_presentation_id) REFERENCES Special_presentation(special_presentation_id)
+);
+
+CREATE TABLE Watched_one_shot (
+    user_id INTEGER NOT NULL,
+    one_shot_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, one_shot_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (one_shot_id) REFERENCES One_shot(one_shot_id)
+);
