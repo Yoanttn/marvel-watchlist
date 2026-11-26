@@ -9,12 +9,14 @@ CREATE TABLE Film (
 
 CREATE TABLE Serie (
     serie_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    summary TEXT,
     title VARCHAR(100)
 );
 
 CREATE TABLE Season (
     season_number INTEGER NOT NULL,
     serie_id INTEGER NOT NULL,
+    summary TEXT,
     PRIMARY KEY (serie_id, season_number),
     FOREIGN KEY (serie_id) REFERENCES Serie(serie_id)
 );
