@@ -9,8 +9,8 @@ CREATE TABLE Film (
 
 CREATE TABLE Serie (
     serie_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    summary TEXT,
-    title VARCHAR(100)
+    title VARCHAR(100),
+    summary TEXT
 );
 
 CREATE TABLE Season (
