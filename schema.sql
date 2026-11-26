@@ -45,3 +45,44 @@ CREATE TABLE One_shot (
 );
 
 -- Include Web-Series ?
+
+-- UNIVERS
+
+CREATE TABLE Univers (
+    univers_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Film_Univers (
+    film_id INTEGER NOT NULL,
+    univers_id INTEGER NOT NULL,
+    PRIMARY KEY (film_id, univers_id),
+    FOREIGN KEY (film_id) REFERENCES Film(film_id),
+    FOREIGN KEY (univers_id) REFERENCES Univers(univers_id)
+);
+
+CREATE TABLE Episode_Univers (
+    serie_id INTEGER NOT NULL,
+    season_number INTEGER NOT NULL,
+    episode_number INTEGER NOT NULL,
+    univers_id INTEGER NOT NULL,
+    PRIMARY KEY (serie_id, season_number, episode_number, univers_id),
+    FOREIGN KEY (serie_id, season_number, episode_number) REFERENCES Episode(serie_id, season_number, episode_number),
+    FOREIGN KEY (univers_id) REFERENCES Univers(univers_id)
+);
+
+CREATE TABLE Special_presentation_Univers (
+    special_presentation_id INTEGER NOT NULL,
+    univers_id INTEGER NOT NULL,
+    PRIMARY KEY (special_presentation_id, univers_id),
+    FOREIGN KEY (special_presentation_id) REFERENCES Special_presentation(special_presentation_id),
+    FOREIGN KEY (univers_id) REFERENCES Univers(univers_id)
+);
+
+CREATE TABLE One_shot_Univers (
+    one_shot_id INTEGER NOT NULL,
+    univers_id INTEGER NOT NULL,
+    PRIMARY KEY (one_shot_id, univers_id),
+    FOREIGN KEY (one_shot_id) REFERENCES One_shot(one_shot_id),
+    FOREIGN KEY (univers_id) REFERENCES Univers(univers_id)
+);
