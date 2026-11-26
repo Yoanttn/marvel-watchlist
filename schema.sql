@@ -14,8 +14,8 @@ CREATE TABLE Serie (
 );
 
 CREATE TABLE Season (
-    season_number INTEGER NOT NULL,
     serie_id INTEGER NOT NULL,
+    season_number INTEGER NOT NULL,
     summary TEXT,
     PRIMARY KEY (serie_id, season_number),
     FOREIGN KEY (serie_id) REFERENCES Serie(serie_id)
